@@ -109,6 +109,25 @@ Follow-up TODOs: None
 - 스케줄 등록 시 중복 시간대 처리.
 - 비활성 계정 데이터 삭제 절차 관련 처리.
 
+## Clarifications
+
+### Session 2025-12-12
+
+- Q: For FR-017 (채용자 구인글 작성), what specific fields beyond title, description, location, and pay rate are required for a new job posting?
+→ A: Include explicit fields like `description`, `salary_range`, `location`, `required_skills`, `application_deadline`.
+
+- Q: What authentication method will be used for user sessions and API access?
+→ A: JWT for stateless authentication.
+
+- Q: For FR-024, what is the specific retention period for inactive account data before permanent deletion?
+→ A: 90 days, then permanently deleted.
+
+- Q: What specific API communication protocol will be used (e.g., REST, GraphQL, gRPC)?
+→ A: RESTful API.
+
+- Q: For FR-015/FR-016 (채용자 구인글 관리), is there a maximum number of active job postings an employer can have?
+→ A: Maximum 500 active job postings per employer.
+
 ## Requirements
 
 ### Functional Requirements
@@ -129,14 +148,14 @@ Follow-up TODOs: None
 - **FR-014**: 시스템은 구직자가 마이페이지 '프로필' 탭에서 자신의 기본 정보를 확인하고 수정할 수 있도록 해야 한다. (image_e6ebd8.png 참조)
 - **FR-015**: 시스템은 채용자 구인 관리 화면에 '모집 중', '매칭 완료' 탭을 제공하여 구인글 상태별 필터링을 가능하게 해야 한다. (image_e612fe.png 참조)
 - **FR-016**: 시스템은 채용자가 등록한 구인글이 없을 경우 "등록된 구인글이 없습니다." 메시지를 표시해야 한다. (image_e60b1e.png 참조)
-- **FR-017**: 시스템은 채용자가 제목, 설명, 위치, 시급, 날짜, 시작/종료 시간, 장기 근무 토글, 업종, 근무 형태를 입력하여 새로운 구인글을 작성하고 등록할 수 있도록 해야 한다. (image_e60a5e.png 참조)
+- **FR-017**: 시스템은 채용자가 제목, 설명, 위치, 시급, 날짜, 시작/종료 시간, 장기 근무 토글, 업종, 근무 형태, `description`, `salary_range`, `location`, `required_skills`, `application_deadline`를 입력하여 새로운 구인글을 작성하고 등록할 수 있도록 해야 한다. (image_e60a5e.png 참조)
 - **FR-018**: 시스템은 채용자가 구인글 등록 후 해당 구인글 목록에 '지원자 0명'과 함께 표시하도록 해야 한다. (image_e612fe.png 참조)
 - **FR-019**: 시스템은 채용자 마이페이지에 '지원자 관리' 탭을 제공하고, 등록된 구인글별로 지원자 목록을 확인할 수 있도록 해야 한다.
 - **FR-020**: 시스템은 채용자가 지원자 상세 화면에서 지원자를 선택하거나 인터뷰를 요청하는 액션을 취할 수 있는 UI를 제공해야 한다.
 - **FR-021**: 시스템은 API 통신 실패 또는 시간 초과 시 사용자에게 친절한 메시지를 표시하고 "재시도" 옵션을 제공해야 한다. (SC-002 및 Edge Cases와 연관)
 - **FR-022**: 시스템은 모든 통신에 HTTPS를 사용해야 한다.
-- **FR-023**: 시스템은 JWT 기반 인증을 사용하여 사용자를 인증해야 한다.
-- **FR-024**: 비활성 계정의 데이터는 업계 표준 관행(예: 90일)에 따라 관리되어야 하며, 데이터 저장에는 사용자 동의가 필요하다.
+- **FR-023**: 시스템은 JWT 기반 stateless 인증을 사용하여 사용자를 인증해야 한다.
+- **FR-024**: 비활성 계정의 데이터는 90일 후 영구 삭제되며, 데이터 저장에는 사용자 동의가 필요하다.
 - **FR-025**: 구직자의 지원 상태는 'Submitted', 'Screening', 'First Interview', 'Second Interview', 'Final Interview', 'Offered', 'Declined Offer', 'Hired', 'Withdrew'로 관리되어야 한다.
 - **FR-026**: 구인글 삭제 시 관련 지원 내역은 아카이브 처리되어야 한다.
 - **FR-027**: 사용자 계정 삭제 시 관련 데이터(지원 내역 포함)는 영구 삭제 전 일정 기간 아카이브 처리되어야 한다.
