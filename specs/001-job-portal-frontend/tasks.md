@@ -20,7 +20,7 @@ description: "Task list for the 구직자 및 채용자 서비스 Frontend 개�
 
 ## Path Conventions
 
-- **Web app**: `frontend/src/`, `frontend/tests/`
+- **Web app**: `src/`, `tests/` (프로젝트 루트 기준)
 
 ---
 
@@ -28,9 +28,9 @@ description: "Task list for the 구직자 및 채용자 서비스 Frontend 개�
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create project structure per implementation plan. Path: `./frontend/`
-- [ ] T002 Initialize JavaScript/TypeScript project with Vite and React dependencies. Path: `./frontend/`
-- [ ] T003 [P] Configure linting and formatting tools. Paths: `./frontend/.eslintrc.cjs`, `./frontend/.prettierrc.cjs`
+- [x] T001 Create project structure per implementation plan. Path: `./` ✅ (이미 완료)
+- [x] T002 Initialize JavaScript/TypeScript project with Vite and React dependencies. Path: `./` ✅ (이미 완료)
+- [x] T003 [P] Configure linting and formatting tools. Paths: `./eslint.config.js` (이미 존재), `./.prettierrc.cjs` ✅ (완료)
 
 ---
 
@@ -40,12 +40,12 @@ description: "Task list for the 구직자 및 채용자 서비스 Frontend 개�
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T004 Setup base React Router configuration. Path: `./frontend/src/App.jsx`
-- [ ] T005 [P] Implement JWT-based authentication service and context. Paths: `./frontend/src/services/authService.js`, `./frontend/src/context/AuthContext.jsx`
-- [ ] T006 [P] Setup API client configuration for RESTful API. Path: `./frontend/src/services/apiClient.js`
-- [ ] T007 Create base models/entities that all stories depend on. Path: `./frontend/src/types/`
-- [ ] T008 Configure global error handling and display mechanism. Paths: `./frontend/src/components/ErrorDisplay.jsx`, `./frontend/src/App.jsx`
-- [ ] T009 Setup environment configuration management. Path: `./frontend/.env`
+- [ ] T004 Setup base React Router configuration. Path: `./src/App.jsx`
+- [ ] T005 [P] Implement JWT-based authentication service and context. Paths: `./src/services/authService.js`, `./src/context/AuthContext.jsx`
+- [ ] T006 [P] Setup API client configuration for RESTful API. Path: `./src/services/apiClient.js`
+- [ ] T007 Create base models/entities that all stories depend on. Path: `./src/types/`
+- [ ] T008 Configure global error handling and display mechanism. Paths: `./src/components/ErrorDisplay.jsx`, `./src/App.jsx`
+- [ ] T009 Setup environment configuration management. Path: `./.env`
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -58,17 +58,17 @@ description: "Task list for the 구직자 및 채용자 서비스 Frontend 개�
 
 ### Tests for User Story 1 (OPTIONAL) ⚠️
 
-- [ ] T010 [P] [US1] Contract test for `/auth/register` endpoint. Path: `./frontend/tests/contract/auth.test.js`
-- [ ] T011 [P] [US1] Integration test for the entire sign-up flow (UI to API). Path: `./frontend/tests/integration/signup.test.js`
+- [ ] T010 [P] [US1] Contract test for `/auth/register` endpoint. Path: `./tests/contract/auth.test.js`
+- [ ] T011 [P] [US1] Integration test for the entire sign-up flow (UI to API). Path: `./tests/integration/signup.test.js`
 
 ### Implementation for User Story 1
 
-- [ ] T012 [P] [US1] Create `User` and role-specific registration schemas/types. Path: `./frontend/src/types/auth.ts`
-- [ ] T013 [US1] Implement `JobSeekerRegistration` form component. Path: `./frontend/src/components/auth/JobSeekerRegistrationForm.jsx`
-- [ ] T014 [US1] Implement `EmployerRegistration` form component. Path: `./frontend/src/components/auth/EmployerRegistrationForm.jsx`
-- [ ] T015 [US1] Implement sign-up page component integrating forms and auth service. Path: `./frontend/src/pages/auth/SignUpPage.jsx`
-- [ ] T016 [US1] Add validation and error handling for sign-up forms. Paths: `./frontend/src/components/auth/JobSeekerRegistrationForm.jsx`, `./frontend/src/components/auth/EmployerRegistrationForm.jsx`
-- [ ] T017 [US1] Implement navigation to login and demo mode toggle. Path: `./frontend/src/pages/auth/SignUpPage.jsx`
+- [ ] T012 [P] [US1] Create `User` and role-specific registration schemas/types. Path: `./src/types/auth.ts`
+- [ ] T013 [US1] Implement `JobSeekerRegistration` form component. Path: `./src/components/auth/JobSeekerRegistrationForm.jsx`
+- [ ] T014 [US1] Implement `EmployerRegistration` form component. Path: `./src/components/auth/EmployerRegistrationForm.jsx`
+- [ ] T015 [US1] Implement sign-up page component integrating forms and auth service. Path: `./src/pages/auth/SignUpPage.jsx`
+- [ ] T016 [US1] Add validation and error handling for sign-up forms. Paths: `./src/components/auth/JobSeekerRegistrationForm.jsx`, `./src/components/auth/EmployerRegistrationForm.jsx`
+- [ ] T017 [US1] Implement navigation to login and demo mode toggle. Path: `./src/pages/auth/SignUpPage.jsx`
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
@@ -81,17 +81,17 @@ description: "Task list for the 구직자 및 채용자 서비스 Frontend 개�
 
 ### Tests for User Story 2 (OPTIONAL) ⚠️
 
-- [ ] T018 [P] [US2] Contract test for `/job-postings` GET and `/job-postings/{id}/apply` POST endpoints. Path: `./frontend/tests/contract/jobs.test.js`
-- [ ] T019 [P] [US2] Integration test for job search, filtering, and application flow. Path: `./frontend/tests/integration/jobSearchApply.test.js`
+- [ ] T018 [P] [US2] Contract test for `/job-postings` GET and `/job-postings/{id}/apply` POST endpoints. Path: `./tests/contract/jobs.test.js`
+- [ ] T019 [P] [US2] Integration test for job search, filtering, and application flow. Path: `./tests/integration/jobSearchApply.test.js`
 
 ### Implementation for User Story 2
 
-- [ ] T020 [US2] Implement `JobPosting` model/interface. Path: `./frontend/src/types/jobs.ts`
-- [ ] T021 [US2] Implement job search and filtering service. Path: `./frontend/src/services/jobService.js`
-- [ ] T022 [US2] Create `JobSearchPage` component with search bar and filters. Path: `./frontend/src/pages/job/JobSearchPage.jsx`
-- [ ] T023 [US2] Implement `JobCard` component. Path: `./frontend/src/components/jobs/JobCard.jsx`
-- [ ] T024 [US2] Implement "Apply" button functionality and state update. Path: `./frontend/src/components/jobs/JobCard.jsx`
-- [ ] T025 [US2] Implement schedule matching logic display (message for no schedule, prioritized list). Path: `./frontend/src/pages/job/JobSearchPage.jsx`
+- [ ] T020 [US2] Implement `JobPosting` model/interface. Path: `./src/types/jobs.ts`
+- [ ] T021 [US2] Implement job search and filtering service. Path: `./src/services/jobService.js`
+- [ ] T022 [US2] Create `JobSearchPage` component with search bar and filters. Path: `./src/pages/job/JobSearchPage.jsx`
+- [ ] T023 [US2] Implement `JobCard` component. Path: `./src/components/jobs/JobCard.jsx`
+- [ ] T024 [US2] Implement "Apply" button functionality and state update. Path: `./src/components/jobs/JobCard.jsx`
+- [ ] T025 [US2] Implement schedule matching logic display (message for no schedule, prioritized list). Path: `./src/pages/job/JobSearchPage.jsx`
 
 **Checkpoint**: At this point, User Story 1 AND 2 should both work independently
 
@@ -104,16 +104,16 @@ description: "Task list for the 구직자 및 채용자 서비스 Frontend 개�
 
 ### Tests for User Story 3 (OPTIONAL) ⚠️
 
-- [ ] T026 [P] [US3] Contract test for `/schedules` and `/users/me` endpoints. Path: `./frontend/tests/contract/myPage.test.js`
-- [ ] T027 [P] [US3] Integration test for schedule management and profile update. Path: `./frontend/tests/integration/myPage.test.js`
+- [ ] T026 [P] [US3] Contract test for `/schedules` and `/users/me` endpoints. Path: `./tests/contract/myPage.test.js`
+- [ ] T027 [P] [US3] Integration test for schedule management and profile update. Path: `./tests/integration/myPage.test.js`
 
 ### Implementation for User Story 3
 
-- [ ] T028 [P] [US3] Implement `Schedule` model/interface and create/update component/modal. Paths: `./frontend/src/types/schedule.ts`, `./frontend/src/components/myPage/ScheduleForm.jsx`
-- [ ] T029 [US3] Implement `MyPage` layout with tabs (Schedule, Activity, Profile). Path: `./frontend/src/pages/myPage/MyPageLayout.jsx`
-- [ ] T030 [US3] Implement 'Schedule' tab functionality. Path: `./frontend/src/pages/myPage/ScheduleTab.jsx`
-- [ ] T031 [US3] Implement 'Activity' tab to display applications. Path: `./frontend/src/pages/myPage/ActivityTab.jsx`
-- [ ] T032 [US3] Implement 'Profile' tab for viewing and editing user info. Path: `./frontend/src/pages/myPage/ProfileTab.jsx`
+- [ ] T028 [P] [US3] Implement `Schedule` model/interface and create/update component/modal. Paths: `./src/types/schedule.ts`, `./src/components/myPage/ScheduleForm.jsx`
+- [ ] T029 [US3] Implement `MyPage` layout with tabs (Schedule, Activity, Profile). Path: `./src/pages/myPage/MyPageLayout.jsx`
+- [ ] T030 [US3] Implement 'Schedule' tab functionality. Path: `./src/pages/myPage/ScheduleTab.jsx`
+- [ ] T031 [US3] Implement 'Activity' tab to display applications. Path: `./src/pages/myPage/ActivityTab.jsx`
+- [ ] T032 [US3] Implement 'Profile' tab for viewing and editing user info. Path: `./src/pages/myPage/ProfileTab.jsx`
 
 **Checkpoint**: All user stories should now be independently functional
 
@@ -126,15 +126,15 @@ description: "Task list for the 구직자 및 채용자 서비스 Frontend 개�
 
 ### Tests for User Story 4 (OPTIONAL) ⚠️
 
-- [ ] T033 [P] [US4] Contract test for `/job-postings` POST and GET endpoints. Path: `./frontend/tests/contract/employerJobs.test.js`
-- [ ] T034 [P] [US4] Integration test for job posting creation and listing. Path: `./frontend/tests/integration/employerJobMgmt.test.js`
+- [ ] T033 [P] [US4] Contract test for `/job-postings` POST and GET endpoints. Path: `./tests/contract/employerJobs.test.js`
+- [ ] T034 [P] [US4] Integration test for job posting creation and listing. Path: `./tests/integration/employerJobMgmt.test.js`
 
 ### Implementation for User Story 4
 
-- [ ] T035 [US4] Implement `JobPostingCreate` form component. Path: `./frontend/src/components/employer/JobPostingForm.jsx`
-- [ ] T036 [US4] Implement `EmployerJobManagementPage` with tabs for 'Currently Hiring' and 'Matched'. Path: `./frontend/src/pages/employer/EmployerJobMgmtPage.jsx`
-- [ ] T037 [US4] Implement logic to display job postings with applicant count. Path: `./frontend/src/components/employer/JobPostingCard.jsx`
-- [ ] T038 [US4] Implement functionality for creating and registering new job postings. Path: `./frontend/src/pages/employer/EmployerJobMgmtPage.jsx`
+- [ ] T035 [US4] Implement `JobPostingCreate` form component. Path: `./src/components/employer/JobPostingForm.jsx`
+- [ ] T036 [US4] Implement `EmployerJobManagementPage` with tabs for 'Currently Hiring' and 'Matched'. Path: `./src/pages/employer/EmployerJobMgmtPage.jsx`
+- [ ] T037 [US4] Implement logic to display job postings with applicant count. Path: `./src/components/employer/JobPostingCard.jsx`
+- [ ] T038 [US4] Implement functionality for creating and registering new job postings. Path: `./src/pages/employer/EmployerJobMgmtPage.jsx`
 
 **Checkpoint**: All user stories should now be independently functional
 
@@ -147,14 +147,14 @@ description: "Task list for the 구직자 및 채용자 서비스 Frontend 개�
 
 ### Tests for User Story 5 (OPTIONAL) ⚠️
 
-- [ ] T039 [P] [US5] Contract test for `/employer/applicants/{jobPostingId}` endpoint. Path: `./frontend/tests/contract/employerApplicants.test.js`
-- [ ] T040 [P] [US5] Integration test for viewing applicant list and taking actions. Path: `./frontend/tests/integration/employerApplicantMgmt.test.js`
+- [ ] T039 [P] [US5] Contract test for `/employer/applicants/{jobPostingId}` endpoint. Path: `./tests/contract/employerApplicants.test.js`
+- [ ] T040 [P] [US5] Integration test for viewing applicant list and taking actions. Path: `./tests/integration/employerApplicantMgmt.test.js`
 
 ### Implementation for User Story 5
 
-- [ ] T041 [US5] Implement `EmployerApplicantManagementPage` to list job postings. Path: `./frontend/src/pages/employer/EmployerApplicantMgmtPage.jsx`
-- [ ] T042 [US5] Implement functionality to view applicants for a selected job posting. Path: `./frontend/src/pages/employer/EmployerApplicantDetailView.jsx`
-- [ ] T043 [US5] Implement UI for candidate actions (e.g., interview request). Path: `./frontend/src/components/employer/ApplicantActions.jsx`
+- [ ] T041 [US5] Implement `EmployerApplicantManagementPage` to list job postings. Path: `./src/pages/employer/EmployerApplicantMgmtPage.jsx`
+- [ ] T042 [US5] Implement functionality to view applicants for a selected job posting. Path: `./src/pages/employer/EmployerApplicantDetailView.jsx`
+- [ ] T043 [US5] Implement UI for candidate actions (e.g., interview request). Path: `./src/components/employer/ApplicantActions.jsx`
 
 **Checkpoint**: All user stories should now be independently functional
 
@@ -167,9 +167,9 @@ description: "Task list for the 구직자 및 채용자 서비스 Frontend 개�
 - [ ] T044 [P] Documentation updates. Path: `./docs/`
 - [ ] T045 Code cleanup and refactoring across the codebase.
 - [ ] T046 Performance optimization for key interactions (search, page loads).
-- [ ] T047 [P] Additional unit tests for shared components and utilities. Path: `./frontend/tests/unit/`
+- [ ] T047 [P] Additional unit tests for shared components and utilities. Path: `./tests/unit/`
 - [ ] T048 Security hardening (e.g., input sanitization, dependency checks).
-- [ ] T049 Run `quickstart.md` validation. Path: `./frontend/README.md`
+- [ ] T049 Run `quickstart.md` validation. Path: `./README.md`
 
 ---
 
@@ -215,11 +215,11 @@ description: "Task list for the 구직자 및 채용자 서비스 Frontend 개�
 
 ```bash
 # Launch all tests for User Story 1 together (if tests requested):
-Task: "Contract test for /auth/register endpoint. Path: ./frontend/tests/contract/auth.test.js"
-Task: "Integration test for the entire sign-up flow (UI to API). Path: ./frontend/tests/integration/signup.test.js"
+Task: "Contract test for /auth/register endpoint. Path: ./tests/contract/auth.test.js"
+Task: "Integration test for the entire sign-up flow (UI to API). Path: ./tests/integration/signup.test.js"
 
 # Launch all models/types for User Story 1 together:
-Task: "Create User and role-specific registration schemas/types. Path: ./frontend/src/types/auth.ts"
+Task: "Create User and role-specific registration schemas/types. Path: ./src/types/auth.ts"
 ```
 
 ---
