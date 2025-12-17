@@ -1,22 +1,38 @@
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import { ErrorDisplay, useErrorHandler } from './components/ErrorDisplay';
+
 import Home from './pages/Home';
-import Find from './pages/Find.jsx';
+import Find from './pages/Find';
 import MyPage from './pages/MyPage';
 import Login from './pages/Login';
-import Tasks from './pages/Tasks.jsx';
-import { Route, Routes } from 'react-router-dom';
+import Tasks from './pages/Tasks';
 
-function App() {
+import './App.css';
+
+function AppContent() {
+  const { error, clearError } = useErrorHandler();
+
   return (
     <>
-      <Routes>    {/* Routes 컴포넌트 안에는 Route 컴포넌트만 들어갈 수 있다. */}
+      <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/tasks" element={<Tasks />} />
         <Route path="/find" element={<Find />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/login" element={<Login />} />
       </Routes>
+
+      {error && <ErrorDisplay error={error} onClose={clearError} />}
     </>
+  );
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 }
 
