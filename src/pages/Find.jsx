@@ -1,11 +1,11 @@
+import MainLayout from '../layouts/MainLayout';
+
 const Find = () => {
     return (
-        <>
-            <div>
-                find
-           </div>
-        </>
+    <MainLayout>
+      <div>find</div>
+    </MainLayout>
     );
-}
+};
 
 export default Find;

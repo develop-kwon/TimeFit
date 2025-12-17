@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { registerEmployer } from '../../services/authService';
+import './EmployerRegistrationForm.css';
 
 /**
  * 채용자 회원가입 폼 컴포넌트
@@ -108,17 +109,9 @@ export function EmployerRegistrationForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ width: '100%', textAlign: 'left' }}>
-      <div style={{ marginBottom: '20px' }}>
-        <label
-          htmlFor="companyName"
-          style={{
-            display: 'block',
-            marginBottom: '8px',
-            fontWeight: '500',
-            color: '#333',
-          }}
-        >
+    <form onSubmit={handleSubmit} className="registration-form">
+      <div className="field-group">
+        <label htmlFor="companyName" className="field-label">
           업체명
         </label>
         <input
@@ -128,41 +121,15 @@ export function EmployerRegistrationForm({
           value={formData.companyName}
           onChange={handleChange}
           placeholder="(주)시흥카페"
-          style={{
-            width: '100%',
-            padding: '12px',
-            border: `1px solid ${errors.companyName ? '#f00' : '#ddd'}`,
-            borderRadius: '8px',
-            fontSize: '16px',
-            boxSizing: 'border-box',
-            backgroundColor: '#f5f5f5',
-            color: '#333',
-          }}
+          className={`field-input ${errors.companyName ? 'field-input--error' : ''}`}
         />
         {errors.companyName && (
-          <span
-            style={{
-              color: '#f00',
-              fontSize: '14px',
-              marginTop: '4px',
-              display: 'block',
-            }}
-          >
-            {errors.companyName}
-          </span>
+          <span className="field-error">{errors.companyName}</span>
         )}
       </div>
 
-      <div style={{ marginBottom: '20px' }}>
-        <label
-          htmlFor="email"
-          style={{
-            display: 'block',
-            marginBottom: '8px',
-            fontWeight: '500',
-            color: '#333',
-          }}
-        >
+      <div className="field-group">
+        <label htmlFor="email" className="field-label">
           이메일
         </label>
         <input
@@ -172,41 +139,15 @@ export function EmployerRegistrationForm({
           value={formData.email}
           onChange={handleChange}
           placeholder="example@email.com"
-          style={{
-            width: '100%',
-            padding: '12px',
-            border: `1px solid ${errors.email ? '#f00' : '#ddd'}`,
-            borderRadius: '8px',
-            fontSize: '16px',
-            boxSizing: 'border-box',
-            backgroundColor: '#f5f5f5',
-            color: '#333',
-          }}
+          className={`field-input ${errors.email ? 'field-input--error' : ''}`}
         />
         {errors.email && (
-          <span
-            style={{
-              color: '#f00',
-              fontSize: '14px',
-              marginTop: '4px',
-              display: 'block',
-            }}
-          >
-            {errors.email}
-          </span>
+          <span className="field-error">{errors.email}</span>
         )}
       </div>
 
-      <div style={{ marginBottom: '20px' }}>
-        <label
-          htmlFor="password"
-          style={{
-            display: 'block',
-            marginBottom: '8px',
-            fontWeight: '500',
-            color: '#333',
-          }}
-        >
+      <div className="field-group">
+        <label htmlFor="password" className="field-label">
           비밀번호
         </label>
         <input
@@ -216,49 +157,16 @@ export function EmployerRegistrationForm({
           value={formData.password}
           onChange={handleChange}
           placeholder="비밀번호를 입력해주세요"
-          style={{
-            width: '100%',
-            padding: '12px',
-            border: `1px solid ${errors.password ? '#f00' : '#ddd'}`,
-            borderRadius: '8px',
-            fontSize: '16px',
-            boxSizing: 'border-box',
-            backgroundColor: '#f5f5f5',
-            color: '#333',
-          }}
+          className={`field-input ${errors.password ? 'field-input--error' : ''}`}
         />
         {errors.password && (
-          <span
-            style={{
-              color: '#f00',
-              fontSize: '14px',
-              marginTop: '4px',
-              display: 'block',
-            }}
-          >
-            {errors.password}
-          </span>
+          <span className="field-error">{errors.password}</span>
         )}
       </div>
 
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '16px',
-          marginBottom: '20px',
-        }}
-      >
-        <div>
-          <label
-            htmlFor="contact"
-            style={{
-              display: 'block',
-              marginBottom: '8px',
-              fontWeight: '500',
-              color: '#333',
-            }}
-          >
+      <div className="field-grid">
+        <div className="field-group">
+          <label htmlFor="contact" className="field-label">
             연락처
           </label>
           <input
@@ -268,41 +176,15 @@ export function EmployerRegistrationForm({
             value={formData.contact}
             onChange={handleChange}
             placeholder="010-1234-5678"
-            style={{
-              width: '100%',
-              padding: '12px',
-              border: `1px solid ${errors.contact ? '#f00' : '#ddd'}`,
-              borderRadius: '8px',
-              fontSize: '16px',
-              boxSizing: 'border-box',
-              backgroundColor: '#f5f5f5',
-              color: '#333',
-            }}
+            className={`field-input ${errors.contact ? 'field-input--error' : ''}`}
           />
           {errors.contact && (
-            <span
-              style={{
-                color: '#f00',
-                fontSize: '14px',
-                marginTop: '4px',
-                display: 'block',
-              }}
-            >
-              {errors.contact}
-            </span>
+            <span className="field-error">{errors.contact}</span>
           )}
         </div>
 
-        <div>
-          <label
-            htmlFor="address"
-            style={{
-              display: 'block',
-              marginBottom: '8px',
-              fontWeight: '500',
-              color: '#333',
-            }}
-          >
+        <div className="field-group">
+          <label htmlFor="address" className="field-label">
             주소
           </label>
           <input
@@ -312,62 +194,22 @@ export function EmployerRegistrationForm({
             value={formData.address}
             onChange={handleChange}
             placeholder="시흥시 정왕동"
-            style={{
-              width: '100%',
-              padding: '12px',
-              border: `1px solid ${errors.address ? '#f00' : '#ddd'}`,
-              borderRadius: '8px',
-              fontSize: '16px',
-              boxSizing: 'border-box',
-              backgroundColor: '#f5f5f5',
-              color: '#333',
-            }}
+            className={`field-input ${errors.address ? 'field-input--error' : ''}`}
           />
           {errors.address && (
-            <span
-              style={{
-                color: '#f00',
-                fontSize: '14px',
-                marginTop: '4px',
-                display: 'block',
-              }}
-            >
-              {errors.address}
-            </span>
+            <span className="field-error">{errors.address}</span>
           )}
         </div>
       </div>
 
       {errors.submit && (
-        <div
-          style={{
-            marginBottom: '20px',
-            padding: '12px',
-            backgroundColor: '#fee',
-            border: '1px solid #fcc',
-            borderRadius: '8px',
-            color: '#c33',
-          }}
-        >
-          {errors.submit}
-        </div>
+        <div className="error-message">{errors.submit}</div>
       )}
 
       <button
         type="submit"
         disabled={isSubmitting}
-        style={{
-          width: '100%',
-          padding: '14px',
-          backgroundColor: '#007bff',
-          color: '#fff',
-          border: 'none',
-          borderRadius: '8px',
-          fontSize: '16px',
-          fontWeight: '600',
-          cursor: isSubmitting ? 'not-allowed' : 'pointer',
-          opacity: isSubmitting ? 0.6 : 1,
-        }}
+        className="btn-submit"
       >
         {isSubmitting ? '처리 중...' : '회원가입 완료'}
       </button>

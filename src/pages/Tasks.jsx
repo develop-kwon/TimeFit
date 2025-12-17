@@ -1,9 +1,5 @@
 import './Tasks.css';
-import Header from '../components/Header';
-import Button from '../components/Button';
-import ButtonList from '../components/ButtonList';
-import Logo from '../assets/TimeFit_Logo.png';
-import { useNavigate } from 'react-router-dom';
+import MainLayout from '../layouts/MainLayout';
 import {
   overview,
   pathConventions,
@@ -32,31 +28,10 @@ const TaskRow = ({ task }) => {
 };
 
 const Tasks = () => {
-  const nav = useNavigate();
-  const navItems = [
-    { label: '홈', onClick: () => nav('/'), type: 'Plain' },
-    { label: '태스크 보드', onClick: () => nav('/tasks'), type: 'Plain' },
-    { label: '일자리 찾기', onClick: () => nav('/find'), type: 'Plain' },
-  ];
-
   return (
-    <div className="TasksPage">
-      <Header
-        centerChild={<ButtonList items={navItems} />}
-        leftChild={
-          <Button
-            text={'TimeFit'}
-            icon={<img src={Logo} width={60} />}
-            onClick={() => nav('/')}
-            type={'Logo'}
-          />
-        }
-        rightChild={
-          <Button text={'로그인'} type={'Login'} onClick={() => nav('/login')} />
-        }
-      />
-
-      <main className="TasksPage__body">
+    <MainLayout>
+      <div className="TasksPage">
+        <main className="TasksPage__body">
         <section className="TasksPage__hero">
           <div className="TasksPage__badgeRow">
             <span className="pill pill--accent">구직자 및 채용자 서비스</span>
@@ -196,8 +171,9 @@ const Tasks = () => {
             </ul>
           </div>
         </section>
-      </main>
-    </div>
+        </main>
+      </div>
+    </MainLayout>
   );
 };
 

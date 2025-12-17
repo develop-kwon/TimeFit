@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { registerJobSeeker } from '../../services/authService';
 import { JobCategories } from '../../types/auth';
+import './JobSeekerRegistrationForm.css';
 
 /**
  * 구직자 회원가입 폼 컴포넌트
@@ -143,64 +144,16 @@ export function JobSeekerRegistrationForm({
   // Step 1: 기본 정보 입력
   if (step === 1) {
     return (
-      <form
-        onSubmit={handleStep1Submit}
-        style={{ width: '100%', textAlign: 'left' }}
-      >
+      <form onSubmit={handleStep1Submit} className="registration-form">
         {/* 진행 표시 */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            marginBottom: '24px',
-            gap: '8px',
-          }}
-        >
-          <div
-            style={{
-              width: '32px',
-              height: '32px',
-              borderRadius: '50%',
-              backgroundColor: '#007bff',
-              color: '#fff',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontWeight: '600',
-            }}
-          >
-            1
-          </div>
-          <div
-            style={{ width: '40px', height: '2px', backgroundColor: '#ddd' }}
-          ></div>
-          <div
-            style={{
-              width: '32px',
-              height: '32px',
-              borderRadius: '50%',
-              backgroundColor: '#ddd',
-              color: '#999',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontWeight: '600',
-            }}
-          >
-            2
-          </div>
+        <div className="progress-indicator">
+          <div className="progress-step progress-step--active">1</div>
+          <div className="progress-line progress-line--inactive"></div>
+          <div className="progress-step progress-step--inactive">2</div>
         </div>
 
-        <div style={{ marginBottom: '20px' }}>
-          <label
-            htmlFor="name"
-            style={{
-              display: 'block',
-              marginBottom: '8px',
-              fontWeight: '500',
-              color: '#333',
-            }}
-          >
+        <div className="field-group">
+          <label htmlFor="name" className="field-label">
             이름
           </label>
           <input
@@ -210,41 +163,15 @@ export function JobSeekerRegistrationForm({
             value={step1Data.name}
             onChange={handleStep1Change}
             placeholder="홍길동"
-            style={{
-              width: '100%',
-              padding: '12px',
-              border: `1px solid ${errors.name ? '#f00' : '#ddd'}`,
-              borderRadius: '8px',
-              fontSize: '16px',
-              boxSizing: 'border-box',
-              backgroundColor: '#f5f5f5',
-              color: '#333',
-            }}
+            className={`field-input ${errors.name ? 'field-input--error' : ''}`}
           />
           {errors.name && (
-            <span
-              style={{
-                color: '#f00',
-                fontSize: '14px',
-                marginTop: '4px',
-                display: 'block',
-              }}
-            >
-              {errors.name}
-            </span>
+            <span className="field-error">{errors.name}</span>
           )}
         </div>
 
-        <div style={{ marginBottom: '20px' }}>
-          <label
-            htmlFor="email"
-            style={{
-              display: 'block',
-              marginBottom: '8px',
-              fontWeight: '500',
-              color: '#333',
-            }}
-          >
+        <div className="field-group">
+          <label htmlFor="email" className="field-label">
             이메일
           </label>
           <input
@@ -254,41 +181,15 @@ export function JobSeekerRegistrationForm({
             value={step1Data.email}
             onChange={handleStep1Change}
             placeholder="example@email.com"
-            style={{
-              width: '100%',
-              padding: '12px',
-              border: `1px solid ${errors.email ? '#f00' : '#ddd'}`,
-              borderRadius: '8px',
-              fontSize: '16px',
-              boxSizing: 'border-box',
-              backgroundColor: '#f5f5f5',
-              color: '#333',
-            }}
+            className={`field-input ${errors.email ? 'field-input--error' : ''}`}
           />
           {errors.email && (
-            <span
-              style={{
-                color: '#f00',
-                fontSize: '14px',
-                marginTop: '4px',
-                display: 'block',
-              }}
-            >
-              {errors.email}
-            </span>
+            <span className="field-error">{errors.email}</span>
           )}
         </div>
 
-        <div style={{ marginBottom: '20px' }}>
-          <label
-            htmlFor="password"
-            style={{
-              display: 'block',
-              marginBottom: '8px',
-              fontWeight: '500',
-              color: '#333',
-            }}
-          >
+        <div className="field-group">
+          <label htmlFor="password" className="field-label">
             비밀번호
           </label>
           <input
@@ -298,49 +199,16 @@ export function JobSeekerRegistrationForm({
             value={step1Data.password}
             onChange={handleStep1Change}
             placeholder="비밀번호를 입력해주세요"
-            style={{
-              width: '100%',
-              padding: '12px',
-              border: `1px solid ${errors.password ? '#f00' : '#ddd'}`,
-              borderRadius: '8px',
-              fontSize: '16px',
-              boxSizing: 'border-box',
-              backgroundColor: '#f5f5f5',
-              color: '#333',
-            }}
+            className={`field-input ${errors.password ? 'field-input--error' : ''}`}
           />
           {errors.password && (
-            <span
-              style={{
-                color: '#f00',
-                fontSize: '14px',
-                marginTop: '4px',
-                display: 'block',
-              }}
-            >
-              {errors.password}
-            </span>
+            <span className="field-error">{errors.password}</span>
           )}
         </div>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '16px',
-            marginBottom: '20px',
-          }}
-        >
-          <div>
-            <label
-              htmlFor="contact"
-              style={{
-                display: 'block',
-                marginBottom: '8px',
-                fontWeight: '500',
-                color: '#333',
-              }}
-            >
+        <div className="field-grid">
+          <div className="field-group">
+            <label htmlFor="contact" className="field-label">
               연락처
             </label>
             <input
@@ -350,41 +218,15 @@ export function JobSeekerRegistrationForm({
               value={step1Data.contact}
               onChange={handleStep1Change}
               placeholder="010-1234-5678"
-              style={{
-                width: '100%',
-                padding: '12px',
-                border: `1px solid ${errors.contact ? '#f00' : '#ddd'}`,
-                borderRadius: '8px',
-                fontSize: '16px',
-                boxSizing: 'border-box',
-                backgroundColor: '#f5f5f5',
-                color: '#333',
-              }}
+              className={`field-input ${errors.contact ? 'field-input--error' : ''}`}
             />
             {errors.contact && (
-              <span
-                style={{
-                  color: '#f00',
-                  fontSize: '14px',
-                  marginTop: '4px',
-                  display: 'block',
-                }}
-              >
-                {errors.contact}
-              </span>
+              <span className="field-error">{errors.contact}</span>
             )}
           </div>
 
-          <div>
-            <label
-              htmlFor="address"
-              style={{
-                display: 'block',
-                marginBottom: '8px',
-                fontWeight: '500',
-                color: '#333',
-              }}
-            >
+          <div className="field-group">
+            <label htmlFor="address" className="field-label">
               주소
             </label>
             <input
@@ -394,46 +236,15 @@ export function JobSeekerRegistrationForm({
               value={step1Data.address}
               onChange={handleStep1Change}
               placeholder="시흥시 정왕동"
-              style={{
-                width: '100%',
-                padding: '12px',
-                border: `1px solid ${errors.address ? '#f00' : '#ddd'}`,
-                borderRadius: '8px',
-                fontSize: '16px',
-                boxSizing: 'border-box',
-                backgroundColor: '#f5f5f5',
-                color: '#333',
-              }}
+              className={`field-input ${errors.address ? 'field-input--error' : ''}`}
             />
             {errors.address && (
-              <span
-                style={{
-                  color: '#f00',
-                  fontSize: '14px',
-                  marginTop: '4px',
-                  display: 'block',
-                }}
-              >
-                {errors.address}
-              </span>
+              <span className="field-error">{errors.address}</span>
             )}
           </div>
         </div>
 
-        <button
-          type="submit"
-          style={{
-            width: '100%',
-            padding: '14px',
-            background: 'linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%)',
-            color: '#fff',
-            border: 'none',
-            borderRadius: '8px',
-            fontSize: '16px',
-            fontWeight: '600',
-            cursor: 'pointer',
-          }}
-        >
+        <button type="submit" className="btn-primary">
           다음 단계
         </button>
       </form>
@@ -442,188 +253,66 @@ export function JobSeekerRegistrationForm({
 
   // Step 2: 관심 직종 선택
   return (
-    <form
-      onSubmit={handleStep2Submit}
-      style={{ width: '100%', textAlign: 'left' }}
-    >
+    <form onSubmit={handleStep2Submit} className="registration-form">
       {/* 진행 표시 */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          marginBottom: '24px',
-          gap: '8px',
-        }}
-      >
-        <div
-          style={{
-            width: '32px',
-            height: '32px',
-            borderRadius: '50%',
-            backgroundColor: '#ddd',
-            color: '#999',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontWeight: '600',
-          }}
-        >
-          1
-        </div>
-        <div
-          style={{ width: '40px', height: '2px', backgroundColor: '#007bff' }}
-        ></div>
-        <div
-          style={{
-            width: '32px',
-            height: '32px',
-            borderRadius: '50%',
-            backgroundColor: '#007bff',
-            color: '#fff',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontWeight: '600',
-          }}
-        >
-          2
-        </div>
+      <div className="progress-indicator">
+        <div className="progress-step progress-step--inactive">1</div>
+        <div className="progress-line progress-line--active"></div>
+        <div className="progress-step progress-step--active">2</div>
       </div>
 
       {/* 관심 직종 선택 섹션 */}
-      <div style={{ marginBottom: '32px' }}>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            marginBottom: '12px',
-          }}
-        >
-          <span style={{ fontSize: '20px' }}>❤️</span>
-          <h3
-            style={{
-              margin: 0,
-              fontSize: '18px',
-              fontWeight: '600',
-              color: '#333',
-            }}
-          >
+      <div className="job-categories-section">
+        <div className="job-categories-header">
+          <span className="job-categories-icon">❤️</span>
+          <h3 className="job-categories-title">
             관심 직종 선택 (복수 선택 가능)
           </h3>
         </div>
-        <p style={{ margin: '0 0 16px 0', color: '#666', fontSize: '14px' }}>
+        <p className="job-categories-description">
           선택한 직종의 새로운 일자리가 올라오면 알림을 받을 수 있습니다.
         </p>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))',
-            gap: '12px',
-          }}
-        >
+        <div className="job-categories-grid">
           {JobCategories.map(category => {
             const isSelected = step2Data.jobCategories.includes(category);
             return (
               <label
                 key={category}
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  padding: '16px',
-                  border: `2px solid ${isSelected ? '#007bff' : '#ddd'}`,
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                  backgroundColor: isSelected ? '#f0f8ff' : '#fff',
-                  transition: 'all 0.2s',
-                }}
+                className={`job-category-card ${
+                  isSelected ? 'job-category-card--selected' : ''
+                }`}
               >
                 <input
                   type="checkbox"
                   checked={isSelected}
                   onChange={() => handleCategoryToggle(category)}
-                  style={{ marginBottom: '8px' }}
+                  className="job-category-checkbox"
                 />
-                <span
-                  style={{
-                    fontSize: '14px',
-                    textAlign: 'center',
-                    color: '#333',
-                  }}
-                >
-                  {category}
-                </span>
+                <span className="job-category-label">{category}</span>
               </label>
             );
           })}
         </div>
 
         {errors.jobCategories && (
-          <span
-            style={{
-              color: '#f00',
-              fontSize: '14px',
-              marginTop: '8px',
-              display: 'block',
-            }}
-          >
-            {errors.jobCategories}
-          </span>
+          <span className="field-error">{errors.jobCategories}</span>
         )}
       </div>
 
       {errors.submit && (
-        <div
-          style={{
-            marginBottom: '20px',
-            padding: '12px',
-            backgroundColor: '#fee',
-            border: '1px solid #fcc',
-            borderRadius: '8px',
-            color: '#c33',
-          }}
-        >
-          {errors.submit}
-        </div>
+        <div className="error-message">{errors.submit}</div>
       )}
 
       <button
         type="submit"
         disabled={isSubmitting}
-        style={{
-          width: '100%',
-          padding: '14px',
-          background: 'linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%)',
-          color: '#fff',
-          border: 'none',
-          borderRadius: '8px',
-          fontSize: '16px',
-          fontWeight: '600',
-          cursor: isSubmitting ? 'not-allowed' : 'pointer',
-          opacity: isSubmitting ? 0.6 : 1,
-          marginBottom: '12px',
-        }}
+        className="btn-primary btn-secondary--spaced"
       >
         {isSubmitting ? '처리 중...' : '회원가입 완료'}
       </button>
 
-      <button
-        type="button"
-        onClick={handlePrevStep}
-        style={{
-          width: '100%',
-          padding: '14px',
-          backgroundColor: '#fff',
-          color: '#666',
-          border: '1px solid #ddd',
-          borderRadius: '8px',
-          fontSize: '16px',
-          fontWeight: '600',
-          cursor: 'pointer',
-        }}
-      >
+      <button type="button" onClick={handlePrevStep} className="btn-secondary">
         이전 단계로
       </button>
     </form>
