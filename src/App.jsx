@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { ErrorDisplay, useErrorHandler } from './components/ErrorDisplay';
+import { SignUpPage } from './pages/auth/SignUpPage';
 import './App.css';
 
 // 임시 홈 페이지 컴포넌트 (나중에 실제 페이지로 교체)
@@ -19,16 +20,6 @@ function LoginPage() {
     <div>
       <h1>로그인</h1>
       <p>로그인 페이지 (구현 예정)</p>
-    </div>
-  );
-}
-
-// 임시 회원가입 페이지 컴포넌트 (나중에 실제 페이지로 교체)
-function SignUpPage() {
-  return (
-    <div>
-      <h1>회원가입</h1>
-      <p>회원가입 페이지 (구현 예정)</p>
     </div>
   );
 }

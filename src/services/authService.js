@@ -17,7 +17,15 @@ import { post, get } from './apiClient';
  * @returns {Promise<Object>} 응답 데이터
  */
 export async function registerJobSeeker(data) {
-  return post('/auth/register/job-seeker', data);
+  const response = await post('/auth/register/job-seeker', data);
+
+  // 회원가입 성공 시 토큰 저장
+  if (response.token) {
+    localStorage.setItem('token', response.token);
+    localStorage.setItem('user', JSON.stringify(response.user));
+  }
+
+  return response;
 }
 
 /**
@@ -31,7 +39,15 @@ export async function registerJobSeeker(data) {
  * @returns {Promise<Object>} 응답 데이터
  */
 export async function registerEmployer(data) {
-  return post('/auth/register/employer', data);
+  const response = await post('/auth/register/employer', data);
+
+  // 회원가입 성공 시 토큰 저장
+  if (response.token) {
+    localStorage.setItem('token', response.token);
+    localStorage.setItem('user', JSON.stringify(response.user));
+  }
+
+  return response;
 }
 
 /**

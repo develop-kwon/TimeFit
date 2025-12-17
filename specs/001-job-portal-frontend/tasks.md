@@ -63,12 +63,12 @@ description: "Task list for the 구직자 및 채용자 서비스 Frontend 개�
 
 ### Implementation for User Story 1
 
-- [ ] T012 [P] [US1] Create `User` and role-specific registration schemas/types. Path: `./src/types/auth.ts`
-- [ ] T013 [US1] Implement `JobSeekerRegistration` form component. Path: `./src/components/auth/JobSeekerRegistrationForm.jsx`
-- [ ] T014 [US1] Implement `EmployerRegistration` form component. Path: `./src/components/auth/EmployerRegistrationForm.jsx`
-- [ ] T015 [US1] Implement sign-up page component integrating forms and auth service. Path: `./src/pages/auth/SignUpPage.jsx`
-- [ ] T016 [US1] Add validation and error handling for sign-up forms. Paths: `./src/components/auth/JobSeekerRegistrationForm.jsx`, `./src/components/auth/EmployerRegistrationForm.jsx`
-- [ ] T017 [US1] Implement navigation to login and demo mode toggle. Path: `./src/pages/auth/SignUpPage.jsx`
+- [x] T012 [P] [US1] Create `User` and role-specific registration schemas/types. Path: `./src/types/auth.js` ✅ (완료)
+- [x] T013 [US1] Implement `JobSeekerRegistration` form component. Path: `./src/components/auth/JobSeekerRegistrationForm.jsx` ✅ (완료)
+- [x] T014 [US1] Implement `EmployerRegistration` form component. Path: `./src/components/auth/EmployerRegistrationForm.jsx` ✅ (완료)
+- [x] T015 [US1] Implement sign-up page component integrating forms and auth service. Path: `./src/pages/auth/SignUpPage.jsx` ✅ (완료)
+- [x] T016 [US1] Add validation and error handling for sign-up forms. Paths: `./src/components/auth/JobSeekerRegistrationForm.jsx`, `./src/components/auth/EmployerRegistrationForm.jsx` ✅ (완료)
+- [x] T017 [US1] Implement navigation to login and demo mode toggle. Path: `./src/pages/auth/SignUpPage.jsx` ✅ (완료)
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
