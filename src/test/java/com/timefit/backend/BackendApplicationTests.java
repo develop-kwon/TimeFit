@@ -1,4 +1,4 @@
-package com.timefit.Backend;
+package com.timefit.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
