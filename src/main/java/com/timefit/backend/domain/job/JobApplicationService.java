@@ -27,11 +27,15 @@ public class JobApplicationService {
             throw new ClosedJobApplicationNotAllowedException(jobId);
         }
 
-        JobApplication application = JobApplication.builder()
-                .job(job)
-                .applicantId(Long.valueOf(request.getApplicantId()))
-                .coverLetter(request.getCoverLetter())
-                .build();
+        if (jobApplicationRepository.existsByJob_IdAndApplicantId(jobId, request.getApplicantId())) {
+            throw new DuplicateJobApplicationException(jobId, request.getApplicantId());
+        }
+
+        JobApplication application = JobApplication.of(
+                job,
+                request.getApplicantId(),
+                request.getCoverLetter()
+        );
 
         JobApplication saved = jobApplicationRepository.save(application);
         return saved.getId();

@@ -14,7 +14,7 @@
 	<artifactId>Backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Backend</name>
-	<description>일자리 매칭 시스템 Backendㄴ</description>
+	<description>일자리 매칭 시스템 Backend</description>
 
 	<properties>
 		<java.version>17</java.version>

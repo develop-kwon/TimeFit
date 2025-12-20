@@ -46,6 +46,12 @@ public class JobApplication {
      */
     @Builder
     private JobApplication(Job job, Long applicantId, String coverLetter) {
+        if (job == null) {
+            throw new IllegalArgumentException("job must not be null");
+        }
+        if (applicantId == null) {
+            throw new IllegalArgumentException("applicantId must not be null");
+        }
         this.job = job;
         this.applicantId = applicantId;
         this.coverLetter = coverLetter;
