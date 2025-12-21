@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+// legacy API controller: 참조용으로 유지하되 스프링 빈으로 등록하지 않음
 @RequiredArgsConstructor
 @RequestMapping("/api/jobs")
 public class JobController {
