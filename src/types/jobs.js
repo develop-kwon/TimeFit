@@ -68,4 +68,3 @@ export const ScheduleMatchResult = {
   hasSchedule: false, // 일정이 있는지 여부
 };
 
-

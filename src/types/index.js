@@ -45,14 +45,6 @@ export const EmployerProfile = {
   jobPostings: [],
 };
 
-// Schedule Entity
-export const Schedule = {
-  id: null,
-  date: null,
-  startTime: '',
-  endTime: '',
-  isAvailable: true,
-};
 
 // Job Posting Entity
 export const JobPosting = {
@@ -83,6 +75,5 @@ export const Application = {
   applicationDate: null,
   status: ApplicationStatus.SUBMITTED,
 };
-
 
 

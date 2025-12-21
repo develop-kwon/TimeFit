@@ -136,7 +136,6 @@ const Find = () => {
           {/* 검색 및 필터 섹션 */}
           <div className="Find__search-section">
             <h1 className="Find__title">일자리 찾기</h1>
-            
             {/* 검색 바 */}
             <form onSubmit={handleSearch} className="Find__search-form">
               <div className="Find__search-input-wrapper">

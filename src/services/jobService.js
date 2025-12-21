@@ -381,6 +381,136 @@ export async function getSchedules(useDemo = true) {
 }
 
 /**
+ * 일정 생성
+ * @param {Object} scheduleData - 일정 데이터
+ * @param {boolean} useDemo - 데모 모드 사용 여부 (기본값: true)
+ * @returns {Promise<Object>} 생성된 일정
+ */
+export async function createSchedule(scheduleData, useDemo = true) {
+  // 데모 모드인 경우 성공 응답 반환
+  if (useDemo) {
+    await new Promise(resolve => setTimeout(resolve, 300));
+    return {
+      ...scheduleData,
+      id: `demo-schedule-${Date.now()}`,
+    };
+  }
+
+  // 실제 API 호출
+  try {
+    return await post('/schedules', scheduleData);
+  } catch (error) {
+    console.warn('API 호출 실패:', error);
+    throw error;
+  }
+}
+
+/**
+ * 일정 업데이트
+ * @param {string} scheduleId - 일정 ID
+ * @param {Object} scheduleData - 일정 데이터
+ * @param {boolean} useDemo - 데모 모드 사용 여부 (기본값: true)
+ * @returns {Promise<Object>} 업데이트된 일정
+ */
+export async function updateSchedule(scheduleId, scheduleData, useDemo = true) {
+  // 데모 모드인 경우 성공 응답 반환
+  if (useDemo) {
+    await new Promise(resolve => setTimeout(resolve, 300));
+    return {
+      ...scheduleData,
+      id: scheduleId,
+    };
+  }
+
+  // 실제 API 호출 (일반적으로 PUT이나 PATCH 사용)
+  try {
+    return await post(`/schedules/${scheduleId}`, scheduleData);
+  } catch (error) {
+    console.warn('API 호출 실패:', error);
+    throw error;
+  }
+}
+
+/**
+ * 일정 삭제
+ * @param {string} scheduleId - 일정 ID
+ * @param {boolean} useDemo - 데모 모드 사용 여부 (기본값: true)
+ * @returns {Promise<void>}
+ */
+export async function deleteSchedule(scheduleId, useDemo = true) {
+  // 데모 모드인 경우 성공 응답 반환
+  if (useDemo) {
+    await new Promise(resolve => setTimeout(resolve, 200));
+    return;
+  }
+
+  // 실제 API 호출
+  try {
+    // DELETE 메서드를 사용한다고 가정 (apiClient에 delete가 있다면)
+    // 여기서는 post를 사용하거나 apiClient를 확장해야 할 수 있음
+    return await post(`/schedules/${scheduleId}/delete`, {});
+  } catch (error) {
+    console.warn('API 호출 실패:', error);
+    throw error;
+  }
+}
+
+/**
+ * 데모 지원 내역 데이터
+ */
+const DEMO_APPLICATIONS = [
+  {
+    id: '1',
+    jobPostingId: '1',
+    jobPosting: {
+      id: '1',
+      title: '카페 바리스타 모집',
+      employer: { companyName: '스타벅스 코리아' },
+      location: '정왕동',
+      salaryRange: '시급 10,000원',
+    },
+    applicationDate: '2024-01-20T10:00:00Z',
+    status: 'Submitted',
+  },
+  {
+    id: '2',
+    jobPostingId: '2',
+    jobPosting: {
+      id: '2',
+      title: '주방 및 홀 서비스 직원',
+      employer: { companyName: '맥도날드' },
+      location: '은행동',
+      salaryRange: '시급 9,500원',
+    },
+    applicationDate: '2024-01-18T14:30:00Z',
+    status: 'Screening',
+  },
+];
+
+/**
+ * 구직자의 지원 내역 조회
+ * @param {boolean} useDemo - 데모 모드 사용 여부 (기본값: true)
+ * @returns {Promise<Array>} 지원 내역 목록
+ */
+export async function getMyActivity(useDemo = true) {
+  // 데모 모드인 경우 데모 데이터 반환
+  if (useDemo) {
+    await new Promise(resolve => setTimeout(resolve, 200));
+    return Array.isArray(DEMO_APPLICATIONS) ? DEMO_APPLICATIONS : [];
+  }
+
+  // 실제 API 호출
+  try {
+    const result = await get('/my-activity');
+    return Array.isArray(result) ? result : [];
+  } catch (error) {
+    // API 호출 실패 시 데모 데이터 반환
+    console.warn('API 호출 실패, 데모 데이터를 사용합니다:', error);
+    return Array.isArray(DEMO_APPLICATIONS) ? DEMO_APPLICATIONS : [];
+  }
+}
+
+/**
  * 일정 매칭 로직
  * 일자리의 시간과 구직자의 일정을 비교하여 매칭 여부 확인
  * @param {Object} jobPosting - 일자리 정보

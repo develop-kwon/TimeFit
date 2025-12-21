@@ -4,7 +4,7 @@ import { ErrorDisplay, useErrorHandler } from './components/ErrorDisplay';
 
 import Home from './pages/Home';
 import Find from './pages/Find';
-import MyPage from './pages/MyPage';
+import SeekerMyPage from './pages/SeekerMyPage';
 import Login from './pages/Login';
 import Tasks from './pages/Tasks';
 
@@ -19,7 +19,8 @@ function AppContent() {
         <Route path="/" element={<Home />} />
         <Route path="/tasks" element={<Tasks />} />
         <Route path="/find" element={<Find />} />
-        <Route path="/mypage" element={<MyPage />} />
+        <Route path="/mypage" element={<SeekerMyPage />} />
+        <Route path="/seeker/mypage" element={<SeekerMyPage />} />
         <Route path="/login" element={<Login />} />
       </Routes>
 

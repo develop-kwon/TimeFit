@@ -1,0 +1,172 @@
+.ActivityTab {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ActivityTab__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ActivityTab__title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  color: #333;
+}
+
+.ActivityTab__count {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.ActivityTab__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ActivityTab__item {
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  transition: box-shadow 0.2s;
+}
+
+.ActivityTab__item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ActivityTab__item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.ActivityTab__item-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  flex: 1;
+}
+
+.ActivityTab__status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.ActivityTab__status-badge--submitted {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.ActivityTab__status-badge--screening {
+  background-color: #fff3e0;
+  color: #f57c00;
+}
+
+.ActivityTab__status-badge--interview {
+  background-color: #f3e5f5;
+  color: #7b1fa2;
+}
+
+.ActivityTab__status-badge--offered {
+  background-color: #e8f5e9;
+  color: #388e3c;
+}
+
+.ActivityTab__status-badge--declined {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.ActivityTab__status-badge--hired {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  font-weight: 700;
+}
+
+.ActivityTab__status-badge--withdrew {
+  background-color: #f5f5f5;
+  color: #757575;
+}
+
+.ActivityTab__status-badge--default {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.ActivityTab__item-company {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.ActivityTab__item-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.ActivityTab__item-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ActivityTab__detail-label {
+  font-size: 12px;
+  color: #999;
+}
+
+.ActivityTab__detail-value {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+.ActivityTab__empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #999;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.ActivityTab__find-jobs-button {
+  padding: 10px 24px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.ActivityTab__find-jobs-button:hover {
+  background-color: #0056b3;
+}
+
+.ActivityTab__loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+  font-size: 14px;
+}
+
