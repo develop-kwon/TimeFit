@@ -74,7 +74,7 @@ public class ControllerDocExamples {
                                         schema = @Schema(ref = "#/components/schemas/ErrorResponse")))
                 }
         )
-    @PostMapping("/jobs/{jobId}/applications/{applicationId}/approve")
+    @org.springframework.web.bind.annotation.PatchMapping("/jobs/{jobId}/applications/{applicationId}/approve")
     public ResponseEntity<Void> approveApplicationExample(@PathVariable Long jobId, @PathVariable Long applicationId) {
         return ResponseEntity.noContent().build();
     }
