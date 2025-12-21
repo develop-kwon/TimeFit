@@ -20,6 +20,7 @@ public class JobResponse {
     private Integer hourlyWage;
     private LocalDate workDate;
     private JobStatus status;
+    private Long recruiterId;
 
     public static JobResponse from(Job job) {
         return JobResponse.builder()
@@ -29,6 +30,10 @@ public class JobResponse {
                 .hourlyWage(job.getHourlyWage())
                 .workDate(job.getWorkDate())
                 .status(job.getStatus())
+                .recruiterId(job.getRecruiter() != null ? job.getRecruiter().getId() : null)
                 .build();
     }
 }
+
+
+

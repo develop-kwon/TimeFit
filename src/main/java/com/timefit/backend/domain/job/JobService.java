@@ -16,15 +16,22 @@ import jakarta.persistence.EntityNotFoundException;
 public class JobService {
 
     private final JobRepository jobRepository;
+    private final com.timefit.backend.domain.user.UserRepository userRepository;
 
+    @org.springframework.security.access.prepost.PreAuthorize("hasRole('RECRUITER')")
     @Transactional
     public JobCreateResponse createJob(JobCreateRequest request) {
+        Long currentUserId = com.timefit.backend.security.SecurityUtil.getCurrentUserId();
+        com.timefit.backend.domain.user.User recruiter = userRepository.findById(currentUserId)
+                .orElseThrow(() -> new jakarta.persistence.EntityNotFoundException("사용자를 찾을 수 없습니다. id=" + currentUserId));
+
         Job job = Job.of(
                 request.getTitle(),
                 request.getDescription(),
                 request.getHourlyWage(),
                 request.getWorkDate(),
-                JobStatus.OPEN // 기본값 OPEN
+                JobStatus.OPEN,
+                recruiter
         );
 
         Job saved = jobRepository.save(job);
@@ -42,13 +49,5 @@ public class JobService {
         Job job = jobRepository.findById(jobId)
                 .orElseThrow(() -> new EntityNotFoundException("채용 공고를 찾을 수 없습니다. id=" + jobId));
         return JobResponse.from(job);
-    }
-
-    @Transactional
-    public void closeJob(Long jobId) {
-        Job job = jobRepository.findById(jobId)
-                .orElseThrow(() -> new EntityNotFoundException("채용 공고를 찾을 수 없습니다. id=" + jobId));
-        job.close(); // 엔티티 메서드로 상태 변경 및 검증
-        // JPA dirty checking에 의해 자동 반영됨
     }
 }

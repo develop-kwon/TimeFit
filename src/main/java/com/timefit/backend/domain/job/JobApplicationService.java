@@ -5,6 +5,7 @@ import com.timefit.backend.domain.job.dto.JobApplicationResponse;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -53,6 +54,7 @@ public class JobApplicationService {
                 .toList();
     }
 
+    @PreAuthorize("hasRole('RECRUITER')")
     @Transactional
     public void approveApplication(Long jobId, Long applicationId) {
         JobApplication application = jobApplicationRepository.findById(applicationId)
@@ -72,6 +74,7 @@ public class JobApplicationService {
         application.approve();
     }
 
+    @PreAuthorize("hasRole('RECRUITER')")
     @Transactional
     public void rejectApplication(Long jobId, Long applicationId) {
         JobApplication application = jobApplicationRepository.findById(applicationId)
