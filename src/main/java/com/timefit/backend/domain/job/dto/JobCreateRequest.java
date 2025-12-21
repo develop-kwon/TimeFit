@@ -17,7 +17,8 @@ public class JobCreateRequest {
     @NotBlank
     private String title;
 
-    // 선택 입력: null 또는 공백 허용
+    // 필수 입력: 공백 불가
+    @NotBlank
     private String description;
 
     @NotNull
