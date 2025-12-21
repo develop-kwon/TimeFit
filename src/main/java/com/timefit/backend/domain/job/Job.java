@@ -68,6 +68,13 @@ public class Job {
         return new Job(title, description, hourlyWage, workDate, status);
     }
 
+    public void close() {
+        if (this.status == JobStatus.CLOSED) {
+            throw new com.timefit.backend.domain.job.JobAlreadyClosedException(this.id);
+        }
+        this.status = JobStatus.CLOSED;
+    }
+
     public List<JobApplication> getApplications() {
         return Collections.unmodifiableList(applications);
     }
