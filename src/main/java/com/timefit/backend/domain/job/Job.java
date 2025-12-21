@@ -37,6 +37,10 @@ public class Job {
     @Column(nullable = false, length = 20)
     private JobStatus status;
 
+    @jakarta.persistence.ManyToOne(fetch = jakarta.persistence.FetchType.LAZY)
+    @jakarta.persistence.JoinColumn(name = "recruiter_id", nullable = false)
+    private com.timefit.backend.domain.user.User recruiter;
+
     @OneToMany(mappedBy = "job")
     private final List<JobApplication> applications = new ArrayList<>();
 
@@ -64,8 +68,22 @@ public class Job {
         this.status = status;
     }
 
+    private Job(String title, String description, Integer hourlyWage, LocalDate workDate, JobStatus status,
+                com.timefit.backend.domain.user.User recruiter) {
+        this(title, description, hourlyWage, workDate, status);
+        if (recruiter == null) {
+            throw new IllegalArgumentException("recruiter must not be null");
+        }
+        this.recruiter = recruiter;
+    }
+
     public static Job of(String title, String description, Integer hourlyWage, LocalDate workDate, JobStatus status) {
         return new Job(title, description, hourlyWage, workDate, status);
+    }
+
+    public static Job of(String title, String description, Integer hourlyWage, LocalDate workDate, JobStatus status,
+                         com.timefit.backend.domain.user.User recruiter) {
+        return new Job(title, description, hourlyWage, workDate, status, recruiter);
     }
 
     public void close() {
