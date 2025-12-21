@@ -52,4 +52,42 @@ public class JobApplicationService {
                 .map(JobApplicationResponse::from)
                 .toList();
     }
+
+    @Transactional
+    public void approveApplication(Long jobId, Long applicationId) {
+        JobApplication application = jobApplicationRepository.findById(applicationId)
+                .orElseThrow(() -> new EntityNotFoundException("지원서를 찾을 수 없습니다. id=" + applicationId));
+
+        // 다른 공고의 지원서 접근 방지
+        if (!application.getJob().getId().equals(jobId)) {
+            throw new EntityNotFoundException("지원서를 찾을 수 없습니다. id=" + applicationId);
+        }
+
+        // 마감된 공고는 처리 불가
+        if (application.getJob().getStatus() == JobStatus.CLOSED) {
+            throw new ClosedJobApplicationNotAllowedException(jobId);
+        }
+
+        // 도메인 규칙: PENDING만 승인 가능, 아니면 예외
+        application.approve();
+    }
+
+    @Transactional
+    public void rejectApplication(Long jobId, Long applicationId) {
+        JobApplication application = jobApplicationRepository.findById(applicationId)
+                .orElseThrow(() -> new EntityNotFoundException("지원서를 찾을 수 없습니다. id=" + applicationId));
+
+        // 다른 공고의 지원서 접근 방지
+        if (!application.getJob().getId().equals(jobId)) {
+            throw new EntityNotFoundException("지원서를 찾을 수 없습니다. id=" + applicationId);
+        }
+
+        // 마감된 공고는 처리 불가
+        if (application.getJob().getStatus() == JobStatus.CLOSED) {
+            throw new ClosedJobApplicationNotAllowedException(jobId);
+        }
+
+        // 도메인 규칙: PENDING만 거절 가능, 아니면 예외
+        application.reject();
+    }
 }

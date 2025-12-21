@@ -22,4 +22,17 @@ public class JobApplicationController {
                 .created(URI.create("/api/jobs/" + jobId + "/applications/" + applicationId))
                 .build();
     }
+
+    @org.springframework.web.bind.annotation.PatchMapping("/{applicationId}/approve")
+    public ResponseEntity<Void> approve(@PathVariable Long jobId, @PathVariable Long applicationId) {
+        jobApplicationService.approveApplication(jobId, applicationId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @org.springframework.web.bind.annotation.PatchMapping("/{applicationId}/reject")
+    public ResponseEntity<Void> reject(@PathVariable Long jobId, @PathVariable Long applicationId) {
+        jobApplicationService.rejectApplication(jobId, applicationId);
+        return ResponseEntity.noContent().build();
+    }
+
 }

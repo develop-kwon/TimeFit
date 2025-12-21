@@ -45,5 +45,11 @@ public class GlobalExceptionHandler {
                 .body(new ErrorResponse(ex.getMessage()));
     }
 
+    @ExceptionHandler(com.timefit.backend.domain.job.ApplicationAlreadyProcessedException.class)
+    public ResponseEntity<ErrorResponse> handleApplicationAlreadyProcessed(com.timefit.backend.domain.job.ApplicationAlreadyProcessedException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(new ErrorResponse(ex.getMessage()));
+    }
+
     public record ErrorResponse(String message) {}
 }
