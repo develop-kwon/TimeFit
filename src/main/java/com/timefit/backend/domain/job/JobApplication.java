@@ -37,6 +37,10 @@ public class JobApplication {
     @Column(name = "cover_letter")
     private String coverLetter;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false, length = 20)
+    private ApplicationStatus status;
+
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
@@ -55,6 +59,8 @@ public class JobApplication {
         this.job = job;
         this.applicantId = applicantId;
         this.coverLetter = coverLetter;
+        // 기본 상태
+        this.status = ApplicationStatus.PENDING;
     }
 
     public static JobApplication of(Job job, Long applicantId, String coverLetter) {
@@ -67,10 +73,27 @@ public class JobApplication {
         return new JobApplication(job, applicantId, coverLetter);
     }
 
+    public void approve() {
+        if (this.status != ApplicationStatus.PENDING) {
+            throw new ApplicationAlreadyProcessedException(this.id);
+        }
+        this.status = ApplicationStatus.APPROVED;
+    }
+
+    public void reject() {
+        if (this.status != ApplicationStatus.PENDING) {
+            throw new ApplicationAlreadyProcessedException(this.id);
+        }
+        this.status = ApplicationStatus.REJECTED;
+    }
+
     @PrePersist
     void prePersist() {
         if (this.createdAt == null) {
             this.createdAt = LocalDateTime.now();
+        }
+        if (this.status == null) {
+            this.status = ApplicationStatus.PENDING;
         }
     }
 }
