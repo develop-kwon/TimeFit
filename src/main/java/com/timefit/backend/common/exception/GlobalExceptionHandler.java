@@ -39,5 +39,11 @@ public class GlobalExceptionHandler {
                 .body(new ErrorResponse(ex.getMessage()));
     }
 
+    @ExceptionHandler(com.timefit.backend.domain.job.JobAlreadyClosedException.class)
+    public ResponseEntity<ErrorResponse> handleJobAlreadyClosed(com.timefit.backend.domain.job.JobAlreadyClosedException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(new ErrorResponse(ex.getMessage()));
+    }
+
     public record ErrorResponse(String message) {}
 }
