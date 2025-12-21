@@ -21,7 +21,14 @@ public class JwtProvider {
             @Value("${jwt.secret}") String secret,
             @Value("${jwt.expiration}") long expirationMillis
     ) {
-        this.key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+        if (secret == null || secret.isBlank()) {
+            throw new IllegalStateException("JWT secret must be provided via environment variable JWT_SECRET");
+        }
+        try {
+            this.key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+        } catch (io.jsonwebtoken.security.WeakKeyException ex) {
+            throw new IllegalStateException("JWT secret must be at least 256 bits (32+ characters) for HS256", ex);
+        }
         this.expirationMillis = expirationMillis;
     }
 
@@ -44,14 +51,32 @@ public class JwtProvider {
     }
 
     public boolean validateToken(String token) {
-        return false;
+        try {
+            Jwts.parserBuilder()
+                    .setSigningKey(key)
+                    .build()
+                    .parseClaimsJws(token);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public String getUserId(String token) {
-        return token;
+        return Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
     }
 
     public String getRole(String token) {
-        return token;
+        return Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .get("role", String.class);
     }
 }

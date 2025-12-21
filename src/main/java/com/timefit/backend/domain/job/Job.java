@@ -77,10 +77,6 @@ public class Job {
         this.recruiter = recruiter;
     }
 
-    public static Job of(String title, String description, Integer hourlyWage, LocalDate workDate, JobStatus status) {
-        return new Job(title, description, hourlyWage, workDate, status);
-    }
-
     public static Job of(String title, String description, Integer hourlyWage, LocalDate workDate, JobStatus status,
                          com.timefit.backend.domain.user.User recruiter) {
         return new Job(title, description, hourlyWage, workDate, status, recruiter);

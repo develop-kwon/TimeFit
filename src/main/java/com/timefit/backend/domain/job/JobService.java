@@ -50,12 +50,4 @@ public class JobService {
                 .orElseThrow(() -> new EntityNotFoundException("채용 공고를 찾을 수 없습니다. id=" + jobId));
         return JobResponse.from(job);
     }
-
-    @Transactional
-    public void closeJob(Long jobId) {
-        Job job = jobRepository.findById(jobId)
-                .orElseThrow(() -> new EntityNotFoundException("채용 공고를 찾을 수 없습니다. id=" + jobId));
-        job.close(); // 엔티티 메서드로 상태 변경 및 검증
-        // JPA dirty checking에 의해 자동 반영됨
-    }
 }

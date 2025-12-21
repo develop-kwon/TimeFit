@@ -21,6 +21,7 @@ import java.util.List;
 public class JobController {
 
     private final JobService jobService;
+    private final JobCommandService jobCommandService;
 
     @PostMapping
     public ResponseEntity<JobCreateResponse> create(@RequestBody @Valid JobCreateRequest request) {
@@ -44,7 +45,7 @@ public class JobController {
 
     @PatchMapping("/{jobId}/close")
     public ResponseEntity<Void> close(@PathVariable Long jobId) {
-        jobService.closeJob(jobId);
+        jobCommandService.closeJob(jobId);
         return org.springframework.http.ResponseEntity.noContent().build(); // 204 No Content
     }
 }
