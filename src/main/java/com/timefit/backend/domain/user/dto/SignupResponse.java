@@ -12,4 +12,7 @@ public class SignupResponse {
     private Long userId;
     private String email;
     private UserRole role;
+
+    // [추가] 자동 로그인을 위한 토큰 필드
+    private String accessToken;
 }

@@ -32,32 +32,33 @@ public class User {
     @Column(nullable = false, length = 20)
     private UserRole role;
 
+    @Column(length = 50)
+    private String name;     // 이름 (또는 회사명)
+
+    @Column(length = 20)
+    private String contact;  // 연락처
+
+    @Column(length = 255)
+    private String address;  // 주소
+
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    private User(String email, String password, UserRole role) {
-        if (email == null || email.isBlank()) {
-            throw new IllegalArgumentException("email must not be blank");
-        }
-        if (password == null || password.isBlank()) {
-            throw new IllegalArgumentException("password must not be blank");
-        }
-        if (role == null) {
-            throw new IllegalArgumentException("role must not be null");
-        }
+    private User(String email, String password, UserRole role, String name, String contact, String address) {
         this.email = email;
         this.password = password;
         this.role = role;
+        this.name = name;
+        this.contact = contact;
+        this.address = address;
     }
 
-    public static User of(String email, String encodedPassword, UserRole role) {
-        return new User(email, encodedPassword, role);
+    public static User of(String email, String encodedPassword, UserRole role, String name, String contact, String address) {
+        return new User(email, encodedPassword, role, name, contact, address);
     }
 
     @PrePersist
     void prePersist() {
-        if (this.createdAt == null) {
-            this.createdAt = LocalDateTime.now();
-        }
+        if (this.createdAt == null) this.createdAt = LocalDateTime.now();
     }
 }

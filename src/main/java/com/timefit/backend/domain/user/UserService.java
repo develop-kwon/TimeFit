@@ -26,10 +26,21 @@ public class UserService {
         }
 
         String encoded = passwordEncoder.encode(request.getPassword());
-        User user = User.of(request.getEmail(), encoded, request.getRole());
+        User user = User.of(
+                request.getEmail(),
+                encoded,
+                request.getRole(),
+                request.getDisplayName(), // name 또는 companyName
+                request.getContact(),
+                request.getAddress()
+        );
         User saved = userRepository.save(user);
 
-        return new SignupResponse(saved.getId(), saved.getEmail(), saved.getRole());
+        // [추가] 가입 즉시 토큰 생성 (자동 로그인용)
+        String accessToken = jwtProvider.generateToken(saved.getId(), saved.getRole(), saved.getName());
+
+        // 토큰을 포함하여 응답 반환
+        return new SignupResponse(saved.getId(), saved.getEmail(), saved.getRole(), accessToken);
     }
 
     @Transactional(readOnly = true)
@@ -41,7 +52,7 @@ public class UserService {
             throw new InvalidCredentialsException();
         }
 
-        String accessToken = jwtProvider.generateToken(user.getId(), user.getRole());
+        String accessToken = jwtProvider.generateToken(user.getId(), user.getRole(), user.getName());
         return new TokenResponse(accessToken, "Bearer", jwtProvider.getExpirationMillis());
     }
 }

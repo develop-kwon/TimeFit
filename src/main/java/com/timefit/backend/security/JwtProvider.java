@@ -32,7 +32,7 @@ public class JwtProvider {
         this.expirationMillis = expirationMillis;
     }
 
-    public String generateToken(Long userId, UserRole role) {
+    public String generateToken(Long userId, UserRole role, String name) {
         long now = System.currentTimeMillis();
         Date issuedAt = new Date(now);
         Date expiry = new Date(now + expirationMillis);
@@ -40,6 +40,7 @@ public class JwtProvider {
         return Jwts.builder()
                 .setSubject(String.valueOf(userId))
                 .claim("role", role.name())
+                .claim("name", name)
                 .setIssuedAt(issuedAt)
                 .setExpiration(expiry)
                 .signWith(key, SignatureAlgorithm.HS256)
