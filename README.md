@@ -1,6 +1,6 @@
 # Backend
 시흥시 일자리 매칭 시스템 백엔드 레포지토리
-# Job / Job Application API (README)
+# Job / Job Application API
 ## 목차
 - [기본 정보](#%EA%B8%B0%EB%B3%B8-%EC%A0%95%EB%B3%B4)
 - [에러 응답 포맷](#%EC%97%90%EB%9F%AC-%EC%9D%91%EB%8B%B5-%ED%8F%AC%EB%A7%B7)
