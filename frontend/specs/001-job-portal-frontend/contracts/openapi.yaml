@@ -1,0 +1,373 @@
+---
+openapi: 3.0.0
+info:
+  title: Job Portal API
+  version: 1.0.0
+  description: API for the Job Seeker and Employer service.
+servers:
+  - url: /api/v1 # Placeholder, actual URL will be defined in backend
+paths:
+  /auth/register:
+    post:
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/JobSeekerRegistration'
+                - $ref: '#/components/schemas/EmployerRegistration'
+      responses:
+        '201':
+          description: User created successfully
+        '400':
+          description: Invalid input
+  /auth/login:
+    post:
+      summary: Log in a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Login successful, returns JWT token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '401':
+          description: Invalid credentials
+  /users/me:
+    get:
+      summary: Get current user profile
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: User profile returned
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/JobSeekerProfile'
+                  - $ref: '#/components/schemas/EmployerProfile'
+    put:
+      summary: Update current user profile
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/JobSeekerProfileUpdate'
+                - $ref: '#/components/schemas/EmployerProfileUpdate'
+      responses:
+        '200':
+          description: Profile updated successfully
+        '400':
+          description: Invalid input
+
+  /job-postings:
+    get:
+      summary: Get a list of job postings
+      parameters:
+        - name: q
+          in: query
+          schema:
+            type: string
+          description: Search query for title or company name
+        - name: category
+          in: query
+          schema:
+            type: string
+          description: Filter by job category
+        # Add other filters like salaryRange, employmentType, etc.
+      responses:
+        '200':
+          description: List of job postings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobPosting'
+    post:
+      summary: Create a new job posting (Employer only)
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobPostingCreate'
+      responses:
+        '201':
+          description: Job posting created
+        '400':
+          description: Invalid input
+        '403':
+          description: User not authorized (Employer only)
+  /job-postings/{id}:
+    get:
+      summary: Get a specific job posting
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The ID of the job posting
+      responses:
+        '200':
+          description: Job posting details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobPosting'
+        '404':
+          description: Job posting not found
+  /job-postings/{id}/apply:
+    post:
+      summary: Apply to a job posting
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The ID of the job posting to apply for
+      responses:
+        '200':
+          description: Application submitted successfully
+        '400':
+          description: Invalid input or already applied
+        '404':
+          description: Job posting not found
+        '403':
+          description: User not authorized (Job Seeker only)
+  /schedules:
+    get:
+      summary: Get job seeker's schedules
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of schedules
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Schedule'
+    post:
+      summary: Add a new schedule entry
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScheduleCreate'
+      responses:
+        '201':
+          description: Schedule added successfully
+        '400':
+          description: Invalid input
+        '403':
+          description: User not authorized (Job Seeker only)
+  /my-activity:
+    get:
+      summary: Get job seeker's activity (applications)
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of applications
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Application'
+        '403':
+          description: User not authorized (Job Seeker only)
+  /employer/applicants/{jobPostingId}:
+    get:
+      summary: Get applicants for a specific job posting (Employer only)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: jobPostingId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The ID of the job posting
+      responses:
+        '200':
+          description: List of applicants
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Application'
+        '404':
+          description: Job posting not found
+        '403':
+          description: User not authorized (Employer only)
+
+components:
+  schemas:
+    JobSeekerRegistration:
+      type: object
+      properties:
+        name: { type: string }
+        email: { type: string, format: email }
+        password: { type: string, minLength: 8 }
+        contact: { type: string }
+        address: { type: string }
+        jobCategories: { type: array, items: { type: string } }
+      required:
+        - name
+        - email
+        - password
+        - jobCategories
+
+    EmployerRegistration:
+      type: object
+      properties:
+        companyName: { type: string }
+        email: { type: string, format: email }
+        password: { type: string, minLength: 8 }
+        contact: { type: string }
+        address: { type: string }
+      required:
+        - companyName
+        - email
+        - password
+
+    LoginRequest:
+      type: object
+      properties:
+        email: { type: string, format: email }
+        password: { type: string }
+      required:
+        - email
+        - password
+
+    LoginResponse:
+      type: object
+      properties:
+        accessToken: { type: string }
+
+    JobSeekerProfileUpdate:
+      type: object
+      properties:
+        name: { type: string }
+        contact: { type: string }
+        address: { type: string }
+        jobCategories: { type: array, items: { type: string } }
+
+    EmployerProfileUpdate:
+      type: object
+      properties:
+        companyName: { type: string }
+        contact: { type: string }
+        address: { type: string }
+
+    JobPostingCreate:
+      type: object
+      properties:
+        title: { type: string }
+        description: { type: string }
+        location: { type: string }
+        salaryRange: { type: string }
+        requiredSkills: { type: array, items: { type: string } }
+        applicationDeadline: { type: string, format: date }
+        startTime: { type: string, format: time }
+        endTime: { type: string, format: time }
+        isLongTerm: { type: boolean }
+        industry: { type: string }
+        employmentType: { type: string }
+      required:
+        - title
+        - description
+        - location
+        - salaryRange
+        - applicationDeadline
+        - startTime
+        - endTime
+        - industry
+        - employmentType
+
+    JobPosting:
+      type: object
+      properties:
+        id: { type: string }
+        employer: { $ref: '#/components/schemas/EmployerProfileSummary' }
+        title: { type: string }
+        description: { type: string }
+        location: { type: string }
+        salaryRange: { type: string }
+        requiredSkills: { type: array, items: { type: string } }
+        applicationDeadline: { type: string, format: date }
+        postedDate: { type: string, format: date-time }
+        startDate: { type: string, format: date }
+        startTime: { type: string, format: time }
+        endTime: { type: string, format: time }
+        isLongTerm: { type: boolean }
+        industry: { type: string }
+        employmentType: { type: string }
+        applicantCount: { type: integer } # From FR-018
+
+    EmployerProfileSummary:
+      type: object
+      properties:
+        companyName: { type: string }
+        # Other summary fields if needed
+
+    ScheduleCreate:
+      type: object
+      properties:
+        date: { type: string, format: date }
+        startTime: { type: string, format: time }
+        endTime: { type: string, format: time }
+        isAvailable: { type: boolean }
+
+    Schedule:
+      type: object
+      properties:
+        id: { type: string }
+        date: { type: string, format: date }
+        startTime: { type: string, format: time }
+        endTime: { type: string, format: time }
+        isAvailable: { type: boolean }
+
+    Application:
+      type: object
+      properties:
+        id: { type: string }
+        jobPostingId: { type: string }
+        jobSeekerId: { type: string }
+        applicationDate: { type: string, format: date-time }
+        status: 
+          type: string
+          enum: [Submitted, Screening, First Interview, Second Interview, Final Interview, Offered, Declined Offer, Hired, Withdrew]
+
+    # Add other necessary schemas like UserSummary, JobPostingSummary etc.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,52 @@
+.applicant-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 120px;
+}
+
+.applicant-actions__button {
+  padding: 8px 16px;
+  border: 1px solid;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.applicant-actions__button--select {
+  background-color: #16a34a;
+  border-color: #16a34a;
+  color: #fff;
+}
+
+.applicant-actions__button--select:hover {
+  background-color: #15803d;
+  border-color: #15803d;
+}
+
+.applicant-actions__button--interview {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.applicant-actions__button--interview:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.applicant-actions__button--reject {
+  background-color: #fff;
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.applicant-actions__button--reject:hover {
+  background-color: #fee;
+  border-color: #dc2626;
+  color: #dc2626;
+}
+

@@ -1,0 +1,169 @@
+/* src/components/seeker/ScheduleTab.css */
+
+.ScheduleTab {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%; /* 가로 꽉 차게 설정 */
+  box-sizing: border-box;
+}
+
+.ScheduleTab__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f1f1f1; /* 헤더 구분선 추가 (프로필 탭과 통일) */
+}
+
+.ScheduleTab__title {
+  font-size: 20px; /* 폰트 사이즈 프로필 탭과 통일 */
+  font-weight: 700;
+  margin: 0;
+  color: #333;
+}
+
+.ScheduleTab__add-button {
+  padding: 8px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.ScheduleTab__add-button:hover {
+  background-color: #0056b3;
+}
+
+/* 폼 컨테이너 스타일 */
+.ScheduleTab__form-container {
+  background-color: #f8f9fa;
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ScheduleTab__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* 간격 살짝 넓힘 */
+  width: 100%; /* 리스트 전체 너비 100% */
+}
+
+/* 개별 일정 아이템 (카드 스타일) */
+.ScheduleTab__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px; /* 패딩 넓힘 */
+  background-color: #fff; /* 배경 흰색 */
+  border: 1px solid #eee; /* 테두리 연하게 */
+  border-radius: 12px; /* 둥근 모서리 */
+  transition: transform 0.2s ease, box-shadow 0.2s;
+  width: 100%; /* 아이템 너비 100% */
+  box-sizing: border-box; /* 패딩 포함해서 너비 계산 */
+}
+
+.ScheduleTab__item:hover {
+  transform: translateX(4px); /* 프로필 탭과 동일한 호버 효과 */
+  border-color: #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.ScheduleTab__item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1; /* 내용이 남은 공간을 모두 차지하도록 설정 */
+}
+
+.ScheduleTab__item-date {
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+}
+
+.ScheduleTab__item-time {
+  font-size: 14px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 시간 앞에 시계 아이콘 느낌 주기 (선택사항) */
+.ScheduleTab__item-time::before {
+  content: '🕒';
+  font-size: 12px;
+}
+
+.ScheduleTab__item-status {
+  margin-top: 6px;
+}
+
+.ScheduleTab__status-badge {
+  display: inline-flex;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.ScheduleTab__status-badge--available {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.ScheduleTab__status-badge--unavailable {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.ScheduleTab__item-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.ScheduleTab__action-button {
+  padding: 8px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: #fff;
+  color: #333;
+}
+
+.ScheduleTab__action-button:hover {
+  background-color: #f8f9fa;
+  border-color: #ccc;
+}
+
+.ScheduleTab__action-button--delete {
+  color: #ff4444;
+  border-color: #ffcccc;
+  background-color: #fff;
+}
+
+.ScheduleTab__action-button--delete:hover {
+  background-color: #ffebee;
+  border-color: #ffaaaa;
+}
+
+.ScheduleTab__empty {
+  text-align: center;
+  padding: 80px 0;
+  color: #999;
+  font-size: 15px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  border: 1px solid #eee;
+}

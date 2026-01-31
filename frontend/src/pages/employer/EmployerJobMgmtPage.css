@@ -1,0 +1,153 @@
+.employer-job-management {
+  width: 100%;
+}
+
+.employer-job-management__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.employer-job-management__status-tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.employer-job-management__status-tab {
+  padding: 8px 16px;
+  background: none;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.employer-job-management__status-tab:hover {
+  border-color: #007bff;
+  color: #007bff;
+}
+
+.employer-job-management__status-tab--active {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.employer-job-management__create-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.employer-job-management__create-button:hover {
+  background-color: #0056b3;
+}
+
+.employer-job-management__create-button--empty {
+  margin-top: 16px;
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.employer-job-management__form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.employer-job-management__form-container {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.employer-job-management__form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.employer-job-management__form-header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.employer-job-management__close-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #64748b;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.employer-job-management__close-button:hover {
+  background-color: #f1f5f9;
+}
+
+.employer-job-management__content {
+  min-height: 300px;
+}
+
+.employer-job-management__loading {
+  text-align: center;
+  padding: 40px;
+  color: #64748b;
+}
+
+.employer-job-management__empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #64748b;
+}
+
+.employer-job-management__empty p {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+}
+
+.employer-job-management__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+

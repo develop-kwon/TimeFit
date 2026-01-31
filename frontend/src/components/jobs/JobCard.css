@@ -1,0 +1,202 @@
+.JobCard {
+  background: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.JobCard:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.JobCard__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.JobCard__company {
+  flex: 1;
+}
+
+.JobCard__company-name {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 4px 0;
+}
+
+.JobCard__industry {
+  font-size: 14px;
+  color: #666;
+}
+
+.JobCard__badges {
+  display: flex;
+  gap: 8px;
+}
+
+.JobCard__badge {
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.JobCard__badge--type {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.JobCard__badge--longterm {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.JobCard__body {
+  margin-bottom: 20px;
+}
+
+.JobCard__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 12px 0;
+}
+
+.JobCard__description {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.JobCard__details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.JobCard__detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.JobCard__detail-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+  min-width: 100px;
+}
+
+.JobCard__detail-value {
+  font-size: 14px;
+  color: #333;
+  flex: 1;
+}
+
+.JobCard__skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  flex: 1;
+}
+
+.JobCard__skill-tag {
+  padding: 4px 10px;
+  background: #f5f5f5;
+  border-radius: 12px;
+  font-size: 12px;
+  color: #555;
+}
+
+.JobCard__schedule-match {
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.JobCard__schedule-match--has-schedule {
+  background: #e8f5e9;
+  border: 1px solid #c8e6c9;
+}
+
+.JobCard__schedule-match--no-schedule {
+  background: #fff3e0;
+  border: 1px solid #ffe0b2;
+}
+
+.JobCard__schedule-match-icon {
+  margin-right: 8px;
+}
+
+.JobCard__schedule-match-text {
+  color: #333;
+}
+
+.JobCard__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.JobCard__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.JobCard__applicant-count {
+  font-size: 13px;
+  color: #666;
+}
+
+.JobCard__posted-date {
+  font-size: 12px;
+  color: #999;
+}
+
+.JobCard__apply-btn {
+  padding: 12px 24px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.JobCard__apply-btn:hover:not(:disabled) {
+  background: #0056b3;
+  transform: translateY(-1px);
+}
+
+.JobCard__apply-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.JobCard__apply-btn--applied {
+  background: #28a745;
+}
+
+.JobCard__apply-btn--applied:hover:not(:disabled) {
+  background: #218838;
+}
+

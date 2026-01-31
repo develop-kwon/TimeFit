@@ -1,0 +1,123 @@
+.employer-applicant-detail {
+  width: 100%;
+}
+
+.employer-applicant-detail__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.employer-applicant-detail__back-button {
+  padding: 8px 16px;
+  background: none;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.employer-applicant-detail__back-button:hover {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.employer-applicant-detail__title {
+  margin: 0 0 4px 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.employer-applicant-detail__subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.employer-applicant-detail__content {
+  min-height: 300px;
+}
+
+.employer-applicant-detail__loading {
+  text-align: center;
+  padding: 40px;
+  color: #64748b;
+}
+
+.employer-applicant-detail__empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #64748b;
+}
+
+.employer-applicant-detail__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.employer-applicant-detail__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  gap: 20px;
+}
+
+.employer-applicant-detail__applicant-info {
+  flex: 1;
+}
+
+.employer-applicant-detail__applicant-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.employer-applicant-detail__applicant-name {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.employer-applicant-detail__status-badge {
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.employer-applicant-detail__applicant-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.employer-applicant-detail__detail-item {
+  margin: 0;
+  font-size: 14px;
+  color: #475569;
+}
+
+.employer-applicant-detail__detail-label {
+  font-weight: 600;
+  color: #0f172a;
+  margin-right: 8px;
+}
+
+@media (max-width: 768px) {
+  .employer-applicant-detail__item {
+    flex-direction: column;
+  }
+}
+

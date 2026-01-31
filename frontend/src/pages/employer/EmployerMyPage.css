@@ -1,0 +1,124 @@
+/* src/pages/employer/EmployerMyPage.css */
+
+/* =========================================
+   1. 전체 레이아웃 & 탭 네비게이션
+   ========================================= */
+
+.employer-my-page {
+  width: 100%;          /* 화면 가로 전체 사용 */
+  max-width: 100%;      /* 기존 1200px 제한 제거 */
+  margin: 0;            /* margin auto 제거 */
+  padding: 40px 40px;   /* 좌우 여백을 주어 시원하게 배치 */
+  box-sizing: border-box; /* 패딩이 너비에 포함되도록 설정 */
+}
+
+/* 헤더 영역 */
+.employer-my-page__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 30px;
+  max-width: 1600px; /* 너무 퍼지지 않게 적당한 제한 */
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.employer-my-page__header-icon {
+  width: 50px;
+  height: 50px;
+  background-color: #e3f2fd;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.employer-my-page__header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.employer-my-page__title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+  color: #333;
+}
+
+.employer-my-page__subtitle {
+  color: #666;
+  margin: 0;
+  font-size: 14px;
+}
+
+/* 메인 컨테이너 (탭 + 내용) */
+.employer-my-page__container {
+  max-width: 1600px; /* 컨텐츠가 너무 찢어지지 않도록 제한 */
+  width: 100%;
+  margin: 0 auto;    /* 중앙 정렬 */
+}
+
+/* 탭 네비게이션 */
+.employer-my-page__tabs {
+  background-color: #f1f3f5;
+  padding: 6px;
+  border-radius: 12px 12px 0 0;
+  display: flex;
+  gap: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.employer-my-page__tab {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.employer-my-page__tab:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.employer-my-page__tab--active {
+  background-color: #fff;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* 컨텐츠 박스 (흰색 카드) */
+.employer-my-page__content {
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  padding: 40px;
+  min-height: 500px;
+  width: 100%;            /* 가로 꽉 차게 */
+  box-sizing: border-box; /* 패딩 포함 계산 */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .employer-my-page {
+    padding: 20px 16px;
+  }
+
+  .employer-my-page__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .employer-my-page__content {
+    padding: 24px 16px;
+  }
+}

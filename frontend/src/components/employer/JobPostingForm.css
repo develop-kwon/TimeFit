@@ -1,0 +1,172 @@
+.job-posting-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.job-posting-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.job-posting-form__label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.job-posting-form__required {
+  color: #ef4444;
+}
+
+.job-posting-form__input,
+.job-posting-form__textarea,
+.job-posting-form__select {
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #0f172a;
+  background-color: #fff;
+  transition: border-color 0.2s;
+}
+
+.job-posting-form__input:focus,
+.job-posting-form__textarea:focus,
+.job-posting-form__select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.job-posting-form__input--error,
+.job-posting-form__textarea--error,
+.job-posting-form__select--error {
+  border-color: #ef4444;
+}
+
+.job-posting-form__textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.job-posting-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.job-posting-form__skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.job-posting-form__skill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background-color: #eef2ff;
+  color: #4338ca;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.job-posting-form__skill-remove {
+  background: none;
+  border: none;
+  color: #4338ca;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.job-posting-form__skill-remove:hover {
+  color: #312e81;
+}
+
+.job-posting-form__checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #0f172a;
+}
+
+.job-posting-form__checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.job-posting-form__error {
+  font-size: 12px;
+  color: #ef4444;
+}
+
+.job-posting-form__error-message {
+  padding: 12px;
+  background-color: #fee;
+  border: 1px solid #fcc;
+  border-radius: 8px;
+  color: #c33;
+  font-size: 14px;
+}
+
+.job-posting-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.job-posting-form__button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.job-posting-form__button--cancel {
+  background-color: #f1f5f9;
+  color: #64748b;
+}
+
+.job-posting-form__button--cancel:hover {
+  background-color: #e2e8f0;
+}
+
+.job-posting-form__button--submit {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.job-posting-form__button--submit:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.job-posting-form__button--submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+  .job-posting-form__row {
+    grid-template-columns: 1fr;
+  }
+}
+

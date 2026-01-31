@@ -1,0 +1,64 @@
+.Button {
+    background-color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    white-space: nowrap;
+}
+
+.Button_Plain {
+    background-color: transparent;
+    color: #1f2937;
+}
+
+.Button_Plain.active {
+    background: linear-gradient(to bottom right, #f97316, #f97316, #2563eb);
+    color: white;
+}
+
+.Button_Plain:hover,
+.Button_Logout:hover {
+    background-color: #f3f4f6;
+}
+
+.Button_Plain.active:hover {
+    background: linear-gradient(to bottom right, #f97316, #f97316, #2563eb);
+    opacity: 0.9;
+}
+
+.Button_Login {
+    background: linear-gradient(to bottom right, #f97316, #f97316, #2563eb);
+    color: white;
+    cursor: pointer;
+    margin: 0 20px;
+}
+
+.Button_Logo {
+    padding: 10px 10px;
+    display: flex;
+    align-items: center;
+}
+
+.Button_Logo .icon {
+    display: flex;
+    background-color: white;
+    border-radius: 20px;
+    align-content: center;
+}
+
+.Button_Logo .gradient {
+    background: linear-gradient(to right, #f97316, #2563eb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: transparent;
+}
+
+.Button_Logout{
+    background-color: transparent;
+    color: #1f2937;
+    border: 1px solid #e5e7eb;
+}
